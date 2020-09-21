@@ -1,10 +1,10 @@
 import { Controller, Get, Post, HttpCode, Body, Headers } from '@nestjs/common';
-import { UsersService } from '../../services/users/users.service';
-import { SigninUserDataDto } from '../../dto/users/singinUserData.dto';
-import { CreateUserDto } from '../../dto/users/createUser.dto';
-import { LoginUserDataDto } from '../../dto/users/LoginUserData.dto';
-import { AuthenticateDto } from '../../dto/users/Authenticate.Dto';
-import { UserProfileDto } from '../../dto/users/readUserProfile.dto';
+import { UsersService } from '../services/users.service';
+import { SigninUserDataDto } from '../dto/users/singinUserData.dto';
+import { CreateUserDto } from '../dto/users/createUser.dto';
+import { LoginUserDataDto } from '../dto/users/LoginUserData.dto';
+import { AuthenticateDto } from '../dto/auth/authenticate.dto';
+import { UserProfileDto } from '../dto/users/readUserProfile.dto';
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UsersService) {}

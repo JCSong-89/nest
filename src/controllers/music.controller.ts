@@ -5,9 +5,9 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
 } from '@nestjs/swagger';
-import { ErrorDto } from '../../error.dto';
-import { ReadMusicDto } from '../../dto/musics/readMusic.dto';
-import { MusicsService } from '../../services/music/music.service';
+import { ErrorDto } from '../error.dto';
+import { ReadMusicDto } from '../dto/musics/readMusic.dto';
+import { MusicsService } from '../services/musics.service';
 
 @ApiTags('음악')
 @Controller('music')

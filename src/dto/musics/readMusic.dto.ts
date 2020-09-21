@@ -1,4 +1,4 @@
-import { Music } from '../../database/models/music/music.entity';
+import { Music } from '../../models/music/music.entity';
 
 export class ReadMusicDto {
   path: string;

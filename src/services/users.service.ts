@@ -6,13 +6,13 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { User } from '../../database/models/user/user.entity';
-import { CreateUserDto } from '../../dto/users/createUser.dto';
-import { SigninUserDataDto } from '../../dto/users/singinUserData.dto';
-import { LoginUserDataDto } from '../../dto/users/LoginUserData.dto';
-import { AuthenticateDto } from '../../dto/users/Authenticate.Dto';
-import { AuthService } from '../../decorators/auth/auth.service';
-import { UserProfileDto } from './../../dto/users/readUserProfile.dto';
+import { User } from '../models/user/user.entity';
+import { CreateUserDto } from '../dto/users/createUser.dto';
+import { SigninUserDataDto } from '../dto/users/singinUserData.dto';
+import { LoginUserDataDto } from '../dto/users/LoginUserData.dto';
+import { AuthenticateDto } from '../dto/auth/authenticate.dto';
+import { AuthService } from './auth.service';
+import { UserProfileDto } from '../dto/users/readUserProfile.dto';
 
 @Injectable()
 export class UsersService {
