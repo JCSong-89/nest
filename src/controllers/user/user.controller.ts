@@ -4,7 +4,7 @@ import { SigninUserDataDto } from '../../dto/users/singinUserData.dto';
 import { CreateUserDto } from '../../dto/users/createUser.dto';
 import { LoginUserDataDto } from '../../dto/users/LoginUserData.dto';
 import { AuthenticateDto } from '../../dto/users/Authenticate.Dto';
-
+import { UserProfileDto } from '../../dto/users/readUserProfile.dto';
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UsersService) {}
@@ -27,8 +27,8 @@ export class UserController {
   @Get()
   async profile(
     @Headers() Authentication: AuthenticateDto,
-  ): Promise<CreateUserDto> {
-    const result = await this.userService.findOneUser(data);
+  ): Promise<UserProfileDto> {
+    const result = await this.userService.findOneUser(Authentication);
 
     return result;
   }

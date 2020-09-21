@@ -1,16 +1,18 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
     SequelizeModule.forRootAsync({
-      imports: [],
+      imports: [ConfigModule.forRoot()],
+      inject: [ConfigService],
       useFactory: () => ({
         dialect: 'mysql',
-        host: '',
+        host: process.env.AWS_HOST,
         port: 3306,
         username: 'root',
-        password: '',
+        password: process.env.AWS_PASSWORD,
         database: 'musicdb',
         dialectOptions: {
           decimalNumbers: true,

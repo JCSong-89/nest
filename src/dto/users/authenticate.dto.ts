@@ -1,6 +1,6 @@
 export class AuthenticateDto {
-  Authentication: string;
+  authentication: string;
   constructor(token: string) {
-    this.Authentication = token;
+    this.authentication = token;
   }
 }
