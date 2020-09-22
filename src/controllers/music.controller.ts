@@ -7,7 +7,7 @@ import {
 } from '@nestjs/swagger';
 import { ErrorDto } from '../error.dto';
 import { ReadMusicDto } from '../dto/musics/readMusic.dto';
-import { MusicsService } from '../services/musics.service';
+import { MusicsService } from '../services/musics/musics.service';
 
 @ApiTags('음악')
 @Controller('music')
