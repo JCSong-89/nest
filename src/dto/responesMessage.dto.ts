@@ -1,4 +1,4 @@
-export class CreateUserDto {
+export class ResponesMessageDto {
   message: string;
   code: string;
   constructor(data: any) {

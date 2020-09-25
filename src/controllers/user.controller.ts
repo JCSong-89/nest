@@ -4,7 +4,7 @@ import { CreateUsersService } from '../services/users/createUser.service';
 import { SignupUsersService } from '../services/users/sginupUser.service';
 import { FindOneUsersService } from '../services/users/findOneUser.service';
 import { SigninUserDataDto } from '../dto/users/singinUserData.dto';
-import { CreateUserDto } from '../dto/users/createUser.dto';
+import { ResponesMessageDto } from '../dto/responesMessage.dto';
 import { LoginUserDataDto } from '../dto/users/LoginUserData.dto';
 import { AuthenticateDto } from '../dto/auth/authenticate.dto';
 import { UserProfileDto } from '../dto/users/readUserProfile.dto';
@@ -18,7 +18,9 @@ export class UserController {
 
   @Post()
   @HttpCode(201)
-  async createUser(@Body() data: SigninUserDataDto): Promise<CreateUserDto> {
+  async createUser(
+    @Body() data: SigninUserDataDto,
+  ): Promise<ResponesMessageDto> {
     const result = await this.createUserService.createUser(data);
 
     return result;

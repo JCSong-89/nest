@@ -1,7 +1,7 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from '../../models/user/user.entity';
-import { CreateUserDto } from '../../dto/users/createUser.dto';
+import { ResponesMessageDto } from '../../dto/responesMessage.dto';
 import { SigninUserDataDto } from '../../dto/users/singinUserData.dto';
 import { AuthService } from '../auth/auth.service';
 
@@ -13,7 +13,7 @@ export class CreateUsersService {
     private authService: AuthService,
   ) {}
 
-  async createUser(data: SigninUserDataDto): Promise<CreateUserDto> {
+  async createUser(data: SigninUserDataDto): Promise<ResponesMessageDto> {
     const user = await this.userModel.findOne({
       where: { username: data.username },
     });
@@ -27,6 +27,6 @@ export class CreateUsersService {
     this.userModel.create(data);
     const response = { code: 'SUCCESS', message: 'Created NEW USER' };
 
-    return new CreateUserDto(response);
+    return new ResponesMessageDto(response);
   }
 }
