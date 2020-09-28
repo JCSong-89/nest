@@ -1,4 +1,4 @@
-import { createReadStream } from 'fs';
+import { createReadStream, existsSync, unlinkSync } from 'fs';
 import { resolve } from 'path';
 import { BadRequestException } from '@nestjs/common';
 import {
@@ -49,6 +49,11 @@ export const putObject = async (file: UploadeWeedleMetaDto) => {
     container: containerName,
   };
 
+  //임시 캐시 삭제
+  if (existsSync(resolve('.', blobName))) {
+    unlinkSync(resolve('.', blobName));
+  }
+
   return requestData;
 };
 
@@ -86,6 +91,11 @@ export const uploadFile = async (filepath: string) => {
       .replace('%', '/'),
     container: containerName,
   };
+
+  //임시 캐시 삭제
+  if (existsSync(resolve('.', blobName))) {
+    unlinkSync(resolve('.', blobName));
+  }
 
   return requestData;
 };
