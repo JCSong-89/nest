@@ -11,7 +11,7 @@ import { Readable as ReadableStream } from 'stream';
 @Injectable()
 export class StorageUploadService {
   async upload(file: UploadedFileMetadataDto): Promise<ResponesMessageDto> {
-    const containerName = 'testsongtest';
+    const containerName = <string>process.env.AZURE_STORAGE_CONTAINER_NAME;
     const sharedKeyCredential = new StorageSharedKeyCredential(
       <string>process.env.AZURE_STORAGE_ACCOUNT,
       <string>process.env.AZURE_STORAGE_SAS_KEY,
@@ -35,9 +35,23 @@ export class StorageUploadService {
     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
     // 업로드 후 결과 반환
-    const result = (await blockBlobClient.uploadStream(stream))._response;
-    const response = { code: 'SUCCESS', message: 'Uploaded File' };
+    const result = await blockBlobClient.uploadStream(stream);
+    const response = result._response.request;
+    const Etag = result.etag;
+    const requestUrl = response.url.replace('?comp=blocklist', '');
+    const requestData = {
+      Etag: Etag,
+      Location: requestUrl,
+      key: requestUrl.replace(
+        `https://${process.env.AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${process.env.AZURE_STORAGE_CONTAINER_NAME}/`,
+        '',
+      ),
+      container: containerName,
+    };
+    console.log(requestData);
 
-    return new ResponesMessageDto(response);
+    const res = { code: 'SUCCESS', message: 'Uploaded File' };
+
+    return new ResponesMessageDto(res);
   }
 }

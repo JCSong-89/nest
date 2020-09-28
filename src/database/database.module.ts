@@ -9,10 +9,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
       useFactory: () => ({
         dialect: 'mysql',
-        host: process.env.AWS_HOST,
+        host: process.env.AZURE_DB_HOST,
         port: 3306,
-        username: 'root',
-        password: process.env.AWS_PASSWORD,
+        username: process.env.AZURE_DB_USERNAME,
+        password: process.env.AZURE_DB_PASSWORD,
         database: 'musicdb',
         dialectOptions: {
           decimalNumbers: true,
